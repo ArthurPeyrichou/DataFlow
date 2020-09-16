@@ -5,7 +5,7 @@ PEYRICHOU Arthur
 
 > Frontend on https://github.com/ArthurPeyrichou/Frontend
 > Backend on https://github.com/ArthurPeyrichou/FlowBackend
-> Components on https://github.com/Rarioty/DataFlow-Components
+> Components on https://github.com/ArthurPeyrichou/FlowComponents
 
 Installation
 =============
@@ -26,14 +26,14 @@ Go to the root folder and type :
 
 - `npm update`
 
-It will pull new updates from frontend and backend and regenerate keys and ssl certificate.
+It will pull new updates from frontend, backend and components.
 
 Security
 =============
 
 For secure communication :
 
-- Security not implemented with docker. For more informations, see in Backend's and Frontend's documentation.
+- Security communication is not implemented with docker. For more informations, see in Backend's and Frontend's documentation.
 
 
 Caution
@@ -46,7 +46,16 @@ Docker
 
 To start the frontend vue.JS and the backend python with docker, go to the root folder and type :
 
-`docker-compose up -d`
+- `git clone https://github.com/ArthurPeyrichou/FlowBackend.git backend`
+- `git clone https://github.com/ArthurPeyrichou/FlowFrontend.git frontend`
+- `git clone https://github.com/ArthurPeyrichou/FlowComponents.git backend/components/FlowComponents`
+- `mv backend/components/FlowComponents/components/* backend/components/`
+- `rm -rf backend/components/FlowComponents/`
+- `docker-compose up -d`
+
+License
+=============
+[MIT](LICENSE)
 
 Thanks
 =============

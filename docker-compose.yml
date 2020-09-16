@@ -3,7 +3,7 @@ services:
   backend:
     build:
       context: FlowBackend/
-      dockerfile: DockerFile
+      dockerfile: Dockerfile
     container_name: dataflow-backend
     ports:
       - 5001:5001
