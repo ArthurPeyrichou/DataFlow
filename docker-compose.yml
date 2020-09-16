@@ -2,14 +2,14 @@ version: '3'
 services:
   backend:
     build:
-      context: FlowBackend/
+      context: frontend/
       dockerfile: Dockerfile
     container_name: dataflow-backend
     ports:
       - 5001:5001
   frontend:
     build: 
-      context: FlowFrontend/
+      context: backend/
       dockerfile: Dockerfile
     container_name: dataflow-frontend
     ports:
