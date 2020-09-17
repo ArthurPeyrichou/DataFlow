@@ -1,0 +1,14 @@
+echo "Please write the Docker virtual machine ip (ex: 192.168.99.100), followed by [ENTER]:"
+
+read dockerIp
+
+git clone https://github.com/ArthurPeyrichou/FlowBackend.git backend
+git clone https://github.com/ArthurPeyrichou/FlowFrontend.git frontend
+git clone https://github.com/ArthurPeyrichou/FlowComponents.git backend/components/FlowComponents
+
+mv backend/components/FlowComponents/components/* backend/components/
+rm -rf backend/components/FlowComponents/
+
+cd frontend/ && sed -i 's+VUE_APP_BACKEND_URL=to_complete+VUE_APP_BACKEND_URL=ws://'"$dockerIp"':5001+g' .env.production
+
+docker-compose up -d

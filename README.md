@@ -51,7 +51,17 @@ To start the frontend vue.JS and the backend python with docker, go to the root 
 - `git clone https://github.com/ArthurPeyrichou/FlowComponents.git backend/components/FlowComponents`
 - `mv backend/components/FlowComponents/components/* backend/components/`
 - `rm -rf backend/components/FlowComponents/`
+- `cd frontend && sed -i 's+VUE_APP_BACKEND_URL=ws://localhost+VUE_APP_BACKEND_URL=ws://192.168.99.100+g' .env.production`
 - `docker-compose up -d`
+
+Or in root folder type :
+
+`./dockerLinux.run`
+
+Docker for Windows
+=============
+
+In the root folder run the `dockerWindows.cmd` (you will have to enter the docker virtual machine ip).
 
 License
 =============

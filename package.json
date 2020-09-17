@@ -26,7 +26,7 @@
         "update:frontend": "cd frontend/ && git pull",
         "postupdate:frontend": "cd frontend/ && npm install",
         "update": "npm run update:backend && npm run update:frontend",
-        "start:backend": "cd backend/ && py server.py &",
+        "start:backend": "cd backend/ && py server.py -wss &",
         "start:frontend": "cd frontend/ && npm run serve &",
         "start": "npm-run-all -p start:backend start:frontend"
     },
