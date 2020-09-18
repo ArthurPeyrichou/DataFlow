@@ -1,9 +1,7 @@
 @echo off
-set /p dockerip="Please write the Docker virtual machine ip:"
-echo %dockerip%
-@echo on
+set /p dockerip="Please write the Docker virtual machine ip (ex: 192.168.99.100), followed by [ENTER]:"
 
-echo "Prerequisite starting"
+echo [92mPrerequisite starting.[0m
 git clone https://github.com/ArthurPeyrichou/FlowFrontend.git frontend
 git clone https://github.com/ArthurPeyrichou/FlowBackend.git backend
 
@@ -16,25 +14,23 @@ RMDIR FlowComponents /S /Q
 
 CD ../../frontend
 
-@echo off 
     setlocal enableextensions disabledelayedexpansion
 
-    set "search=VUE_APP_BACKEND_URL=to_complete"
-    set "replace=ws://%dockerip%:5001"
+    set "replace=VUE_APP_BACKEND_URL=ws://%dockerip%:5001"
     set "textFile=.env.production"
 
     for /f "delims=" %%i in ('type "%textFile%" ^& break ^> "%textFile%" ') do (
         set "line=%%i"
         setlocal enabledelayedexpansion
-        IF "!line:VUE_APP_BACKEND_URL=_!"=="!line:_=_!" (>>"%textFile%" echo !line:_=_!) ELSE (>>"%textFile%" echo !line:to_complete=%replace%!)
+        IF "!line:VUE_APP_BACKEND_URL=_!"=="!line:_=_!" (>>"%textFile%" echo !line:_=_!) ELSE (>>"%textFile%" echo %replace%)
         endlocal
     )
-@echo on
-echo "Prerequisite finished, click to start docker"
+
+echo [92mPrerequisite finished, type Enter to start docker.[0m
 pause
 
-echo "Docker starting"
+echo [92mDocker starting.[0m
 docker-compose up -d
-echo "Docker finished"
-
-echo "Tool ready on %dockerip%:4200"
+echo [92mDocker finished.[0m
+echo [92mTool ready on http://%dockerip%:4200, type Enter to close.[0m
+pause

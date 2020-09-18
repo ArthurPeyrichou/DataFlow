@@ -1,7 +1,10 @@
 echo "Please write the Docker virtual machine ip (ex: 192.168.99.100), followed by [ENTER]:"
-
 read dockerIp
 
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
+echo -e ${GREEN}Prerequisite starting.${NC}
 git clone https://github.com/ArthurPeyrichou/FlowBackend.git backend
 git clone https://github.com/ArthurPeyrichou/FlowFrontend.git frontend
 git clone https://github.com/ArthurPeyrichou/FlowComponents.git backend/components/FlowComponents
@@ -9,6 +12,13 @@ git clone https://github.com/ArthurPeyrichou/FlowComponents.git backend/componen
 mv backend/components/FlowComponents/components/* backend/components/
 rm -rf backend/components/FlowComponents/
 
-cd frontend/ && sed -i 's+VUE_APP_BACKEND_URL=to_complete+VUE_APP_BACKEND_URL=ws://'"$dockerIp"':5001+g' .env.production
+cd frontend/ && sed -i 's+VUE_APP_BACKEND_URL=.*+VUE_APP_BACKEND_URL=ws://'"$dockerIp"':5001+g' .env.production
 
+echo -e ${GREEN}Prerequisite finished.${NC}
+read -p "Press any key to start docker."
+
+echo -e ${GREEN}Docker starting.${NC}
 docker-compose up -d
+echo -e ${GREEN}Docker finished.${NC}
+echo -e ${GREEN}Tool ready on http://$dockerIp:4200, type Enter to close.${NC}
+read -p "Press any key to close."
